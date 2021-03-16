@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+<table>
+    <thead>
+        <tr>
+            <th>Hostname</th>
+            <th>FQDN</th>
+            <th>IP</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>No. Serie</th>
+            <th>Físico/Virtual</th>
+            <th>No. Procesadores</th>
+            <th>Nucleos X Procesador</th>
+            <th>Procesadores Virtuales (vCPUs)</th>
+            <th>Memoria (MB)</th>
+            <th>DNS</th>
+            <th>Dominio</th>
+            <th>Nombre SO</th>
+            <th>Versión</th>
+            <th>"Arquitectura (bits)"</th>
+            <th>"Arquitectura (bits)"</th>
+        </tr>
+    </thead>
+    <tbody>
+{% for networkS in groups['RHEL'] %}
+        <tr>
+            <td>{{hostvars[networkS]['ansible_hostname']}}</td>
+            <td>{{hostvars[networkS]['ansible_fqdn']}}</td>
+            <td>{{hostvars[networkS]['ansible_all_ipv4_addresses']}}</td>
+            <td>{{hostvars[networkS]['ansible_system_vendor']}}</td>
+            <td>{{hostvars[networkS]['ansible_product_name']}}</td>
+            <td>{{hostvars[networkS]['ansible_product_serial']}}</td>
+            <td>{{hostvars[networkS]['ansible_virtualization_role']}}</td>
+            <td>{{hostvars[networkS]['ansible_processor_cores']}}</td>
+            <td>{{hostvars[networkS]['ansible_processor_count']}}</td>
+            <td>{{hostvars[networkS]['ansible_processor_vcpus']}}</td>
+            <td>{{hostvars[networkS]['ansible_memtotal_mb']}}</td>
+            <td>{{hostvars[networkS]['ansible_dns']}}</td>
+            <td>{{hostvars[networkS]['ansible_domain']}}</td>
+            <td>{{hostvars[networkS]['ansible_distribution_file_search_string']}}</td>
+            <td>{{hostvars[networkS]['ansible_distribution_version']}}</td>
+            <td>{{hostvars[networkS]['ansible_architecture']}}</td>
+	    <td>{{ dateee.stdout }}</td>
+        </tr>
+{% endfor %}
+    </tbody>
+</table>
+</body>
+</html>
